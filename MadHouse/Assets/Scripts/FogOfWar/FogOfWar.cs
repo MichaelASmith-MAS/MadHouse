@@ -113,14 +113,14 @@ public class FogOfWar : MonoBehaviour
 
                 if (dist < RadiusSquared)
                 {
-                    Vector3 testPoint = new Vector3(vert.x, player.position.y, vert.z);
-                    Ray testRay = new Ray(new Vector3(player.position.x + player.localScale.x, player.localScale.y, player.position.z), testPoint - player.position);
+                    //Vector3 testPoint = new Vector3(vert.x, player.position.y, vert.z);
+                    //Ray testRay = new Ray(new Vector3(player.position.x, player.localScale.y, player.position.z), testPoint - player.position);
+                    //RaycastHit raycastHit;
 
-                    Debug.DrawRay(new Vector3(player.position.x + player.localScale.x, player.localScale.y, player.position.z), testPoint - player.position, Color.green);
+                    //Debug.DrawRay(new Vector3(player.position.x, player.localScale.y, player.position.z), testPoint - player.position, Color.green);
 
-                    if (!Physics.Raycast(testRay, RadiusSquared))
-                    {
-
+                    //if (!Physics.Raycast(testRay))
+                    //{
                         float alpha = Mathf.Min(colors[i].a, dist / RadiusSquared);
 
                         if (alpha < minThreshold)
@@ -130,7 +130,7 @@ public class FogOfWar : MonoBehaviour
                         }
 
                         colors[i].a = alpha;
-                    }
+                    //}
                 }
 
                 if (colors[i].a < presetAlpha)
