@@ -26,14 +26,9 @@ public class Inventory : MonoBehaviour
 
     public Text maxWeightText, currentWeightText;
 
-    public Weapon defaultWeapon;
-    public Armor defaultArmor;
+    public int slotCount = 20;
 
-    public WeaponSlot equippedWeapon;
-    public ArmorSlot equippedArmor;
-
-    public int rows = 5, columns = 5;
-    public Slot[,] slots;
+    public GameObject slotPanel, equippedPanel;
 
     // ------------------------------------------------------------------------------
     // Protected Variables
@@ -45,9 +40,11 @@ public class Inventory : MonoBehaviour
     // Private Variables
     // ------------------------------------------------------------------------------
 
-    public GameObject player;
+    GameObject player;
     GameObject gameController;
     Tags tags;
+
+    Slot[] slots;
 
     #endregion
 
@@ -81,22 +78,17 @@ public class Inventory : MonoBehaviour
     {
         player = gameObject;
 
+        slots = new Slot[slotCount];
+
         maxWeightText.text = (player.GetComponent<PlayerController>().attributes.Strength * 15).ToString() + maxWeightText.text;
 
-        slots = new Slot[rows, columns];
-
-        for (int y = 0; y < columns; y++)
+        for (int i = 0; i < slotCount; i++)
         {
-            for (int x = 0; x < rows; x++)
-            {
-                slots[x, y] = new Slot();
+            GameObject go = (GameObject)Instantiate(Resources.Load("Prefabs/Slot"), slotPanel.transform);
 
-            }
+            slots[i] = go.GetComponent<Slot>();
 
         }
-
-        equippedArmor = new ArmorSlot();
-        equippedWeapon = new WeaponSlot();
 
     }
 

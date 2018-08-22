@@ -107,106 +107,106 @@ public class Combat : Interactable
 
         Inventory inventory = player.GetComponent<Inventory>();
 
-        Weapon enemyWeapon = inventory.equippedWeapon.CurrentWeapon;
-        Armor armor = GetComponent<Inventory>().equippedArmor.CurrentArmor;
+        //Weapon enemyWeapon = inventory.equippedWeapon.CurrentWeapon;
+        //Armor armor = GetComponent<Inventory>().equippedArmor.CurrentArmor;
 
-        if (inventory.equippedWeapon.CurrentWeapon.WeaponType == WeaponType.Melee)
-        {
-            if (player.tag == Tags.player)
-            {
-                float hit = Random.Range(1, 20) + player.GetComponent<PlayerController>().attributes.DexMod;
+        //if (inventory.equippedWeapon.CurrentWeapon.WeaponType == WeaponType.Melee)
+        //{
+        //    if (player.tag == Tags.player)
+        //    {
+        //        float hit = Random.Range(1, 20) + player.GetComponent<PlayerController>().attributes.DexMod;
 
-                if (hit > GetComponent<AIController>().attributes.Agility)
-                {
-                    float damage = Mathf.Max(Random.Range(1, enemyWeapon.Damage) + GetComponent<AIController>().attributes.StrMod, 0);
+        //        if (hit > GetComponent<AIController>().attributes.Agility)
+        //        {
+        //            float damage = Mathf.Max(Random.Range(1, enemyWeapon.Damage) + GetComponent<AIController>().attributes.StrMod, 0);
 
-                    float tmp = -damage;
+        //            float tmp = -damage;
 
-                    damage = Mathf.Clamp(damage - armor.CurrDamageReduction, 0, damage);
-                    GetComponent<AIController>().health.ChangeHealth(-damage, null);
+        //            damage = Mathf.Clamp(damage - armor.CurrDamageReduction, 0, damage);
+        //            GetComponent<AIController>().health.ChangeHealth(-damage, null);
                     
-                    if (damage > 0)
-                    {
-                        armor.ChangeIntegrity(armor.MaxDamageReduction);
+        //            if (damage > 0)
+        //            {
+        //                armor.ChangeIntegrity(armor.MaxDamageReduction);
 
-                    }
-                    else
-                    {
-                        armor.ChangeIntegrity(tmp);
+        //            }
+        //            else
+        //            {
+        //                armor.ChangeIntegrity(tmp);
 
-                    }
+        //            }
 
-                }
+        //        }
 
-            }
+        //    }
 
-            else
-            {
-                if (gameObject.tag == Tags.player)
-                {
-                    float hit = Random.Range(1, 20) + player.GetComponent<AIController>().attributes.DexMod;
+        //    else
+        //    {
+        //        if (gameObject.tag == Tags.player)
+        //        {
+        //            float hit = Random.Range(1, 20) + player.GetComponent<AIController>().attributes.DexMod;
 
-                    if (hit > GetComponent<PlayerController>().attributes.Agility)
-                    {
-
-
-                    }
-                }
-                else
-                {
-                    float hit = Random.Range(1, 20) + player.GetComponent<AIController>().attributes.DexMod;
-
-                    if (hit > GetComponent<AIController>().attributes.Agility)
-                    {
+        //            if (hit > GetComponent<PlayerController>().attributes.Agility)
+        //            {
 
 
-                    }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            float hit = Random.Range(1, 20) + player.GetComponent<AIController>().attributes.DexMod;
 
-                }
-
-            }
-
-        }
-        else
-        {
-            if (player.tag == Tags.player)
-            {
-                float hit = Random.Range(1, 20) + player.GetComponent<PlayerController>().attributes.PcnMod;
-
-                if (hit > GetComponent<AIController>().attributes.Agility)
-                {
+        //            if (hit > GetComponent<AIController>().attributes.Agility)
+        //            {
 
 
-                }
+        //            }
 
-            }
+        //        }
 
-            else
-            {
-                if (gameObject.tag == Tags.player)
-                {
-                    float hit = Random.Range(1, 20) + player.GetComponent<AIController>().attributes.PcnMod;
+        //    }
 
-                    if (hit > GetComponent<PlayerController>().attributes.Agility)
-                    {
+        //}
+        //else
+        //{
+        //    if (player.tag == Tags.player)
+        //    {
+        //        float hit = Random.Range(1, 20) + player.GetComponent<PlayerController>().attributes.PcnMod;
 
-
-                    }
-                }
-                else
-                {
-                    float hit = Random.Range(1, 20) + player.GetComponent<AIController>().attributes.PcnMod;
-
-                    if (hit > GetComponent<AIController>().attributes.Agility)
-                    {
+        //        if (hit > GetComponent<AIController>().attributes.Agility)
+        //        {
 
 
-                    }
+        //        }
 
-                }
+        //    }
 
-            }
-        }
+        //    else
+        //    {
+        //        if (gameObject.tag == Tags.player)
+        //        {
+        //            float hit = Random.Range(1, 20) + player.GetComponent<AIController>().attributes.PcnMod;
+
+        //            if (hit > GetComponent<PlayerController>().attributes.Agility)
+        //            {
+
+
+        //            }
+        //        }
+        //        else
+        //        {
+        //            float hit = Random.Range(1, 20) + player.GetComponent<AIController>().attributes.PcnMod;
+
+        //            if (hit > GetComponent<AIController>().attributes.Agility)
+        //            {
+
+
+        //            }
+
+        //        }
+
+        //    }
+        //}
 
     }
 
@@ -226,29 +226,29 @@ public class Combat : Interactable
 
         Inventory inventory = player.GetComponent<Inventory>();
 
-        radius = inventory.equippedWeapon.CurrentWeapon.Range;
+        //radius = inventory.equippedWeapon.CurrentWeapon.Range;
 
-        if (inventory.equippedWeapon.CurrentWeapon.WeaponType == WeaponType.Melee)
-        {
-            if (player.tag == Tags.player)
-            {
-                attackSpeed = 5 - player.GetComponent<PlayerController>().attributes.SpdMod;
+        //if (inventory.equippedWeapon.CurrentWeapon.WeaponType == WeaponType.Melee)
+        //{
+        //    if (player.tag == Tags.player)
+        //    {
+        //        attackSpeed = 5 - player.GetComponent<PlayerController>().attributes.SpdMod;
 
-            }
+        //    }
 
-            else
-            {
-                attackSpeed = 5 - player.GetComponent<AIController>().attributes.SpdMod;
+        //    else
+        //    {
+        //        attackSpeed = 5 - player.GetComponent<AIController>().attributes.SpdMod;
 
-            }
+        //    }
 
-        }
+        //}
 
-        else
-        {
-            attackSpeed = inventory.equippedWeapon.CurrentWeapon.AttackSpeed;
+        //else
+        //{
+        //    attackSpeed = inventory.equippedWeapon.CurrentWeapon.AttackSpeed;
 
-        }
+        //}
 
     }
 

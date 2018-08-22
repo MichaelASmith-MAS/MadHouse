@@ -16,7 +16,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum Menus { None, Paused, Inventory, SkillTree, Options, Save, Load }
-public enum MenuState { Open, Closed }
 public enum OptionsMenus { Display, Controls, Audio, Gameplay }
 
 public class UIManager : MonoBehaviour
@@ -43,9 +42,6 @@ public class UIManager : MonoBehaviour
     GameController gameController;
 
     Menus activeMenu = Menus.None;
-
-    MenuState inventoryState = MenuState.Closed;
-    Dictionary<MenuState, Action> inventoryStateMachine = new Dictionary<MenuState, Action>();
 
     #endregion
 
@@ -79,8 +75,6 @@ public class UIManager : MonoBehaviour
     {
         gameController = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<GameController>();
 
-        RegisterStates();
-
     }
 
     // ------------------------------------------------------------------------------
@@ -97,26 +91,7 @@ public class UIManager : MonoBehaviour
     {
         SetActiveMenu();
 
-        inventoryStateMachine[inventoryState].Invoke();
-
         KeyPressControls();
-
-    }
-
-    // ------------------------------------------------------------------------------
-    // Function Name: 
-    // Return types: 
-    // Argument types: 
-    // Author: 
-    // Date: 
-    // ------------------------------------------------------------------------------
-    // Purpose: 
-    // ------------------------------------------------------------------------------
-
-    void RegisterStates()
-    {
-        inventoryStateMachine.Add(MenuState.Closed, new Action(CloseInventory));
-        inventoryStateMachine.Add(MenuState.Open, new Action(OpenInventory));
 
     }
 
@@ -154,7 +129,17 @@ public class UIManager : MonoBehaviour
 
         }
 
-        else if(activeMenu == Menus.Inventory || activeMenu == Menus.Paused || activeMenu == Menus.SkillTree)
+        else if(activeMenu == Menus.Inventory)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I))
+            {
+                activeMenu = Menus.None;
+
+            }
+
+        }
+
+        else if(activeMenu == Menus.Paused || activeMenu == Menus.SkillTree)
         {
             if(Input.GetKeyDown(KeyCode.Escape))
             {
@@ -191,13 +176,13 @@ public class UIManager : MonoBehaviour
         switch (activeMenu)
         {
             case Menus.None:
-                inventoryState = MenuState.Closed;
+                inventoryPanel.SetActive(false);
                 gameController.SetGameState(GameState.Active);
                 break;
             case Menus.Paused:
                 break;
             case Menus.Inventory:
-                inventoryState = MenuState.Open;
+                inventoryPanel.SetActive(true);
                 gameController.SetGameState(GameState.Paused);
                 break;
             case Menus.SkillTree:
@@ -209,38 +194,6 @@ public class UIManager : MonoBehaviour
             case Menus.Load:
                 break;
         }
-
-    }
-
-    // ------------------------------------------------------------------------------
-    // Function Name: 
-    // Return types: 
-    // Argument types: 
-    // Author: 
-    // Date: 
-    // ------------------------------------------------------------------------------
-    // Purpose: 
-    // ------------------------------------------------------------------------------
-
-    void CloseInventory()
-    {
-        inventoryPanel.SetActive(false);
-
-    }
-
-    // ------------------------------------------------------------------------------
-    // Function Name: 
-    // Return types: 
-    // Argument types: 
-    // Author: 
-    // Date: 
-    // ------------------------------------------------------------------------------
-    // Purpose: 
-    // ------------------------------------------------------------------------------
-
-    void OpenInventory()
-    {
-        inventoryPanel.SetActive(true);
 
     }
 

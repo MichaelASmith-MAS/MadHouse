@@ -13,7 +13,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ArmorSlot
+public class ArmorSlot : Slot
 {
     #region Variables
     // ------------------------------------------------------------------------------

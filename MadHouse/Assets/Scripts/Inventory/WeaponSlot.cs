@@ -13,7 +13,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WeaponSlot
+public class WeaponSlot : Slot
 {
     #region Variables
     // ------------------------------------------------------------------------------
